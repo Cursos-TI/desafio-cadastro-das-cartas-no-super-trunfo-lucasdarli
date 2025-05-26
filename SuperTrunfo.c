@@ -6,10 +6,10 @@ typedef struct {
     char estado;               // Letra de 'A' a 'H'
     char codigo[4];            // Ex: A01, B03
     char nomeCidade[50];      // Nome da cidade
-    int populacao;            // Número de habitantes
+    int populacao;            // habitantes
     float area;               // Área em km²
-    float pib;                // PIB da cidade
-    int pontosTuristicos;     // Número de pontos turísticos
+    float pib;                // PIB
+    int pontosTuristicos;     // pontos turísticos
 } Carta;
 
 void imprimirCarta(Carta c) {
