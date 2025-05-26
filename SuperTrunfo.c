@@ -1,58 +1,58 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-#define NUM_CARTAS 4
-#define NUM_ATRIBUTOS 3
+#define NUM_CARTAS 2
 
 typedef struct {
-    char nome[20];
-    int atributos[NUM_ATRIBUTOS]; // Ex: Força, Velocidade, Inteligência
+    char estado;               // Letra de 'A' a 'H'
+    char codigo[4];            // Ex: A01, B03
+    char nomeCidade[50];      // Nome da cidade
+    int populacao;            // Número de habitantes
+    float area;               // Área em km²
+    float pib;                // PIB da cidade
+    int pontosTuristicos;     // Número de pontos turísticos
 } Carta;
 
-void mostrarCarta(Carta c) {
-    printf("Carta: %s\n", c.nome);
-    printf("1. Força: %d\n", c.atributos[0]);
-    printf("2. Velocidade: %d\n", c.atributos[1]);
-    printf("3. Inteligência: %d\n", c.atributos[2]);
+void imprimirCarta(Carta c) {
+    printf("\n--- Dados da Carta ---\n");
+    printf("Estado: %c\n", c.estado);
+    printf("Código da Carta: %s\n", c.codigo);
+    printf("Nome da Cidade: %s\n", c.nomeCidade);
+    printf("População: %d habitantes\n", c.populacao);
+    printf("Área: %.2f km²\n", c.area);
+    printf("PIB: R$ %.2f bilhões\n", c.pib);
+    printf("Pontos Turísticos: %d\n", c.pontosTuristicos);
 }
 
 int main() {
-    srand(time(NULL));
+    Carta cartas[NUM_CARTAS];
 
-    Carta baralho[NUM_CARTAS] = {
-        {"Dragão", {90, 60, 70}},
-        {"Fênix", {70, 80, 90}},
-        {"Grifo", {85, 75, 65}},
-        {"Unicórnio", {60, 70, 95}}
-    };
+    for (int i = 0; i < NUM_CARTAS; i++) {
+        printf("\n--- Cadastro da Carta %d ---\n", i + 1);
 
-    int cartaJogador = rand() % NUM_CARTAS;
-    int cartaComputador;
-    do {
-        cartaComputador = rand() % NUM_CARTAS;
-    } while (cartaComputador == cartaJogador);
+        printf("Informe o estado (A-H): ");
+        scanf(" %c", &cartas[i].estado);
 
-    printf("Sua carta:\n");
-    mostrarCarta(baralho[cartaJogador]);
+        printf("Informe o código da carta (ex: A01): ");
+        scanf("%s", cartas[i].codigo);
 
-    int escolha;
-    printf("Escolha um atributo (1-Força, 2-Velocidade, 3-Inteligência): ");
-    scanf("%d", &escolha);
-    escolha--; // Ajustar para índice do array
+        printf("Informe o nome da cidade: ");
+        scanf(" %[^\n]", cartas[i].nomeCidade); // Lê string com espaços
 
-    printf("\nCarta do computador:\n");
-    mostrarCarta(baralho[cartaComputador]);
+        printf("Informe a população: ");
+        scanf("%d", &cartas[i].populacao);
 
-    int valorJogador = baralho[cartaJogador].atributos[escolha];
-    int valorComputador = baralho[cartaComputador].atributos[escolha];
+        printf("Informe a área (em km²): ");
+        scanf("%f", &cartas[i].area);
 
-    if (valorJogador > valorComputador) {
-        printf("\nVocê venceu!\n");
-    } else if (valorJogador < valorComputador) {
-        printf("\nVocê perdeu!\n");
-    } else {
-        printf("\nEmpate!\n");
+        printf("Informe o PIB (em bilhões): ");
+        scanf("%f", &cartas[i].pib);
+
+        printf("Informe o número de pontos turísticos: ");
+        scanf("%d", &cartas[i].pontosTuristicos);
+    }
+
+    for (int i = 0; i < NUM_CARTAS; i++) {
+        imprimirCarta(cartas[i]);
     }
 
     return 0;
