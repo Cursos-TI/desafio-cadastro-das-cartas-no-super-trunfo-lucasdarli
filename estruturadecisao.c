@@ -4,11 +4,11 @@ int main (){
   int maca = 76
   int laranha = 77
 
-if (maca >= laranja);
+if (maca >= laranja); {
   printf ("Tem mais maca do que laranja");
-
-    Else  
+}
+    Else  {
     printf("Tem mais laranha do que maca");
+}
 
-end if
 }
